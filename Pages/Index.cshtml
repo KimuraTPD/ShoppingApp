@@ -1,10 +1,60 @@
-﻿@page
-@model IndexModel
+@page
+@model ShoppingApp.Pages.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Index";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].mail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].tel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User[0].address)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.User) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.mail)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.userId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.userId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.userId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
